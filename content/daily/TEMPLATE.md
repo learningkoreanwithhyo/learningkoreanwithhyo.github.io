@@ -1,5 +1,5 @@
 ---
-date: YYYY-MM-DD
+date: 2026-01-01
 word: 오늘의 단어
 word_romanization: oneurui daneo
 word_en: English meaning
