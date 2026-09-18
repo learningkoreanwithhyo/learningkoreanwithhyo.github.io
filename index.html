@@ -1032,7 +1032,7 @@ const SETTINGS = {
   youtubePlaylist: "",                          // 내가 만든 유튜브 재생목록 ID (넣으면 목록이 자동으로 보여요)
   tiktokUser: "",                               // 틱톡 아이디 (예: "korea")
   newsRss: "https://news.google.com/rss?hl=ko&gl=KR&ceid=KR:ko",  // 화제의 뉴스 (인터넷에 올린 뒤 자동으로 불러와요)
-  dailyContentBase: "https://raw.githubusercontent.com/learningkoreanwithhyo/learningkoreanwithhyo.github.io/main/content/daily/",
+  dailyContentBase: "content/daily/",
   // 수업료와 결제 링크: 실제 PayPal.Me / Wise 결제 링크를 넣으면 결제 버튼이 바로 연결돼요.
   lessonPrice: 17, minLessons: 4, lessonCounts: [4, 6, 8, 12], trialPrice: 10,
   // 4회부터 구매 가능하며 12회 묶음은 10% 할인됩니다. 숫자만 바꾸면 할인율이 바뀌어요.
@@ -1353,7 +1353,7 @@ async function loadDailyMarkdown(iso){
   try{
     const res=await fetch(`${SETTINGS.dailyContentBase||"content/daily/"}${iso}.md`,{cache:"no-store"});
     if(!res.ok) return null;
-    const raw=await res.text(), block=(raw.match(/^---\s*\n([\s\S]*?)\n---/)||[])[1];
+    const raw=await res.text(), block=(raw.match(/(?:^|<!--\s*daily-data\s*-->\s*)---\s*\n([\s\S]*?)\n---/)||[])[1];
     if(!block) return null;
     return Object.fromEntries(block.split("\n").filter(x=>x.includes(":" )).map(line=>{const i=line.indexOf(":");return [line.slice(0,i).trim(),line.slice(i+1).trim().replace(/^['\"]|['\"]$/g,"")];}));
   }catch(e){ return null; }
