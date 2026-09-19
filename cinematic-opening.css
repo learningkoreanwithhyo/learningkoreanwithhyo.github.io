@@ -1,0 +1,60 @@
+/* Keep legacy splash hidden until a selected opening takes ownership. */
+#splash.splash{display:none}
+.hyo-intro,.hyo-intro *{box-sizing:border-box}
+.hyo-intro{--accent:#f1d6af;position:fixed;inset:0;z-index:99999;isolation:isolate;overflow:hidden;background:#171321;color:#fff;font-family:Arial,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;opacity:1;transition:opacity .35s ease}
+.hyo-intro--animated{--accent:#e2c8ff}
+.hi-frame,.hi-ambient,.hi-shade,.hi-glow,.hi-streak,.hi-grain,.hi-exit{position:absolute;inset:0;pointer-events:none}
+.hi-frame{overflow:hidden;opacity:0;transition:opacity .35s ease}
+.hi-art{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 43%;max-width:none;transform-origin:55% 42%;will-change:transform;}
+.hi-ambient{background:var(--scene) center/cover;filter:blur(35px) brightness(.5);transform:scale(1.15);opacity:.6}
+.hi-shade{background:linear-gradient(90deg,rgba(15,11,29,.32),transparent 54%),linear-gradient(0deg,rgba(10,8,22,.85),transparent 50%,rgba(10,8,22,.25));}
+.hi-top{position:absolute;top:0;left:0;right:0;margin:0;border:0;background:none;padding:30px 4.5vw;display:flex;justify-content:space-between;align-items:center;z-index:4}
+.hi-logo{font:italic 38px Georgia,serif;letter-spacing:-2px;text-shadow:0 2px 20px #211424}
+.hi-logo span{display:block;font:9px Arial,sans-serif;letter-spacing:2px;margin-top:5px}
+.hyo-intro .hi-skip{border:1px solid #ffffff60;border-radius:30px;background:#20182c45;color:#fff;font:12px Arial,sans-serif;padding:11px 17px;cursor:pointer;backdrop-filter:blur(12px);}
+.hi-skip span{margin-left:16px}.hi-skip:focus-visible{outline:2px solid #fff;outline-offset:5px}
+.hi-copy{position:absolute;left:5vw;bottom:100px;max-width:640px;text-shadow:0 2px 24px #130a2980;opacity:0}
+.hi-eyebrow{font-size:10px;letter-spacing:3px;color:var(--accent);margin:0 0 16px;display:flex;align-items:center;gap:12px}
+.hi-eyebrow i{display:block;width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 20px var(--accent)}
+.hyo-intro h1{font-size:clamp(42px,5.5vw,84px);font-weight:500;line-height:1.04;letter-spacing:-3px;margin:0 0 20px;}
+.hyo-intro h1 em{font-family:Georgia,serif;font-weight:400;color:#ffefd8}
+.hyo-intro--animated h1 em{color:#edd7ff}
+.hi-greeting{font-size:15px;line-height:1.5;letter-spacing:-.3px;margin:0 0 6px}
+.hi-english{font-size:12px;letter-spacing:.3px;color:#ffffffac;margin:0}
+.hi-bottom{position:absolute;bottom:30px;left:5vw;right:5vw;margin:0;padding:0;border:0;background:none;text-align:left;display:flex;justify-content:space-between;gap:20px;align-items:center;font-size:9px;letter-spacing:2px;color:#ffffffbd;}
+.hi-entering{letter-spacing:.3px;font-size:11px}.hi-entering b{font-size:20px;margin-left:20px;color:var(--accent)}
+.hi-progress{position:absolute;bottom:0;left:0;height:2px;background:var(--accent);width:100%;transform:scaleX(0);transform-origin:left;box-shadow:0 0 12px var(--accent)}
+.hi-glow{background:radial-gradient(ellipse at 15% 35%,#ffd79d4a,transparent 60%);mix-blend-mode:screen;opacity:0}
+.hi-grain{opacity:.09;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23fff' filter='url(%23n)' opacity='.55' d='M0 0h180v180H0z'/%3E%3C/svg%3E");}
+.hi-streak{inset:-60%;opacity:0;background:linear-gradient(115deg,transparent 40%,#d4b0ff30 47%,#fff5 49%,#b9dfff30 51%,transparent 57%);transform:translateX(-70%);mix-blend-mode:screen;}
+.hi-exit{background:#f5edf9;opacity:0;z-index:5;}
+.hi-playing .hi-frame{opacity:1}
+.hi-playing .hi-art{animation:hi-camera-soft 4.3s cubic-bezier(.18,.5,.3,1) both}
+.hi-playing .hi-copy{animation:hi-copy-in .9s .45s both}
+.hi-playing .hi-progress{animation:hi-progress 3.95s linear both}
+.hi-playing .hi-glow{animation:hi-light 4s ease both}
+.hyo-intro--animated.hi-playing .hi-art{animation:hi-camera-pop 4.3s cubic-bezier(.16,.65,.2,1) both}
+.hyo-intro--animated.hi-playing .hi-copy{animation:hi-copy-pop .75s .65s both}
+.hyo-intro--animated.hi-playing .hi-streak{animation:hi-sweep 1.2s .08s ease-out both}
+.hyo-intro--animated.hi-playing .hi-exit{animation:hi-screen-open .6s 3.6s both}
+.hi-leaving{opacity:0}
+@keyframes hi-camera-soft{0%{transform:scale(1.09) translate(1%,.5%);filter:brightness(.7)}25%{filter:brightness(1)}100%{transform:scale(1.015) translate(0,0);filter:brightness(1)}}
+@keyframes hi-camera-pop{0%{transform:scale(1.23) translate(-2%,1.5%) rotate(-1.2deg);filter:blur(3px) brightness(.6)}22%{transform:scale(1.055) translate(.3%,0) rotate(.15deg);filter:blur(0) brightness(1.07)}65%{transform:scale(1.025) translate(0,0);filter:brightness(1)}100%{transform:scale(1.075) translate(-.5%,.3%);filter:brightness(1)}}
+@keyframes hi-copy-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes hi-copy-pop{from{opacity:0;transform:translateX(-35px);filter:blur(4px)}to{opacity:1;transform:translateX(0);filter:blur(0)}}
+@keyframes hi-light{0%{opacity:0}28%{opacity:.8}100%{opacity:.25}}
+@keyframes hi-sweep{0%{opacity:0;transform:translateX(-55%)}30%{opacity:.8}100%{opacity:0;transform:translateX(50%)}}
+@keyframes hi-progress{to{transform:scaleX(1)}}
+@keyframes hi-screen-open{0%{opacity:0;clip-path:circle(0% at 86% 76%)}75%{opacity:.75}100%{opacity:1;clip-path:circle(150% at 86% 76%)}}
+@media(max-width:700px){
+ .hi-top{padding:24px}.hi-logo{font-size:34px}
+ .hi-frame{inset:22% 0 auto;height:auto;aspect-ratio:1672/941;overflow:visible;}
+ .hi-art{object-fit:contain;object-position:center;box-shadow:0 30px 70px #100e2180}
+ .hi-shade{background:linear-gradient(0deg,#100e21e6,transparent 56%,#100e2140)}
+ .hi-copy{left:26px;bottom:115px;right:24px}.hyo-intro h1{font-size:49px;letter-spacing:-2px;line-height:1.03;margin-bottom:16px}
+ .hyo-intro h1 br{display:none}.hyo-intro h1 em{display:block}.hi-eyebrow{font-size:9px;margin-bottom:15px}
+ .hi-greeting{font-size:14px}.hi-english{font-size:11px}.hi-bottom{left:26px;right:26px;bottom:26px;display:block}
+ .hi-entering{display:block;margin-top:12px}.hi-entering b{margin-left:10px}
+}
+@media(max-height:650px) and (max-width:700px){.hi-frame{top:17%}.hi-copy{bottom:90px}.hyo-intro h1{font-size:35px}.hyo-intro h1 em{display:inline}.hi-eyebrow{margin-bottom:8px}.hi-bottom{bottom:18px}.hi-entering{display:none}}
+@media(prefers-reduced-motion:reduce){.hyo-intro{display:none}}
